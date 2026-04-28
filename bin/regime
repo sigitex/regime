@@ -1,0 +1,35 @@
+#!/usr/bin/env bun
+import { resolve } from "path"
+import { check } from "../src/check"
+import { sync } from "../src/sync"
+
+const [command, ...rawArgs] = process.argv.slice(2)
+const options = rawArgs.filter((arg) => arg.startsWith("-"))
+const paths = rawArgs.filter((arg) => !arg.startsWith("-"))
+
+if (
+  paths.length > 1 ||
+  options.some((option) => option !== "--full") ||
+  options.filter((option) => option === "--full").length > 1 ||
+  (command === "sync" && options.length > 0)
+) {
+  usage()
+}
+
+const targetDir = resolve(paths[0] ?? process.cwd())
+
+switch (command) {
+  case "check":
+    await check(targetDir, options.includes("--full"))
+    break
+  case "sync":
+    await sync(targetDir)
+    break
+  default:
+    usage()
+}
+
+function usage(): never {
+  console.error("Usage:\n  regime check [path] [--full]\n  regime sync [path]")
+  process.exit(1)
+}

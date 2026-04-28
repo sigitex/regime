@@ -1,0 +1,17 @@
+{
+  "templates": [
+    "sigitex:workflow/mirror",
+    "sigitex:shared/package",
+    "sigitex:tool/oxc",
+    "sigitex:tool/vibes",
+    "sigitex:tool/vscode"
+  ],
+  "sources": {
+    "sigitex": "../templates"
+  },
+  "vars": {
+    "repo": "regime",
+    "copyright": "Sigitex",
+    "license": "MIT"
+  }
+}

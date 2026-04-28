@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["bun"],
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*",
+    "./bin/regime",
+    "scripts/**/*.ts"
+  ]
+}
