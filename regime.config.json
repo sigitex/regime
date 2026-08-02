@@ -1,7 +1,7 @@
 {
   "templates": [
+    "sigitex:project/package",
     "sigitex:workflow/mirror",
-    "sigitex:shared/package",
     "sigitex:tool/oxc",
     "sigitex:tool/vibes",
     "sigitex:tool/vscode"
