@@ -64,6 +64,13 @@ export async function check(targetDir: string, full = false): Promise<void> {
         continue
       }
 
+      if (strategy === "scaffold") {
+        if (full) {
+          console.log(`  ${targetRelPath}: ${green}ok${reset}`)
+        }
+        continue
+      }
+
       const existingContent = readFileSync(targetPath)
 
       if (strategy === "merge json") {

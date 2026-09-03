@@ -66,7 +66,20 @@ export async function sync(targetDir: string): Promise<void> {
         mkdirSync(targetFileDir, { recursive: true })
       }
 
-      if (strategy === "merge json") {
+      if (strategy === "scaffold") {
+        if (existsSync(targetPath)) {
+          continue
+        }
+
+        const templateContent = interpolate(
+          readFileSync(templatePaths[templatePaths.length - 1]),
+          vars,
+          targetRelPath,
+        )
+        await writeFile(targetPath, templateContent)
+        console.log(`  ${targetRelPath}: ${green}created${reset}`)
+        allSynced = false
+      } else if (strategy === "merge json") {
         let templateObj: unknown
         try {
           templateObj = mergeTemplateJsonFiles(

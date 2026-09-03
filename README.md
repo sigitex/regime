@@ -143,11 +143,14 @@ Inheritance stays within the root selected by the top-level template entry. Meta
 | Strategy | Behavior |
 |----------|----------|
 | `overwrite` (default) | Replace the target file with the final template version. |
+| `scaffold` | Create the target from the final template version only when it is missing. |
 | `merge json` | Deep-merge JSON. Template values win; target-only keys remain; arrays are unioned. |
 | `merge jsonc` | Apply the JSON merge semantics while parsing and writing JSONC. |
 | `merge lines` | Append missing exact template lines while preserving existing content and order. |
 
-When multiple templates provide the same target path, Regime processes them in chain order. The final contributor wins for `overwrite`; merge strategies combine all contributors before updating the target.
+When multiple templates provide the same target path, Regime processes them in chain order. The final contributor supplies `overwrite` and `scaffold` content; merge strategies combine all contributors before updating the target.
+
+After `scaffold` creates a file, Regime treats its content as user-owned. `check` verifies only that the file exists, and `sync` never changes an existing scaffolded file.
 
 ### Variable Interpolation
 

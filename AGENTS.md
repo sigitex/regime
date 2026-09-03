@@ -83,11 +83,12 @@ Metadata inheritance remains in the initiating template root. Metadata paths do 
 | Strategy | Behavior |
 |----------|----------|
 | `overwrite` (default) | Replace the target with the final template version. |
+| `scaffold` | Create the target from the final template version only when absent; leave existing content untouched. |
 | `merge json` | Deep-merge JSON; template values win, target-only keys remain, and arrays are unioned. |
 | `merge jsonc` | Apply JSON merge semantics while parsing and writing JSONC. |
 | `merge lines` | Append missing exact lines while preserving existing content and order. |
 
-When multiple templates provide one target path, processing follows chain order. `overwrite` uses the last contributor; merge strategies combine all contributors.
+When multiple templates provide one target path, processing follows chain order. `overwrite` and `scaffold` use the last contributor; merge strategies combine all contributors.
 
 ### Variable Interpolation
 
